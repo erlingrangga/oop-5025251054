@@ -27,7 +27,8 @@ public class Perpustakaan
 
         if (_daftarBuku.Any(x => x.Isbn == buku.Isbn))
         {
-            throw new InvalidOperationException("Buku dengan ISBN yang sama sudah ada.");
+            throw new InvalidOperationException(
+                "Buku dengan ISBN yang sama sudah ada.");
         }
 
         _daftarBuku.Add(buku);
@@ -43,12 +44,62 @@ public class Perpustakaan
     public void PinjamBuku(AkunAnggota akun, string isbn)
     {
         // TODO(Level 10): implementasikan sesuai urutan pengecekan di SOAL.md.
-        throw new NotImplementedException("Level 10 belum diimplementasikan");
+
+        if (akun is null)
+        {
+            throw new ArgumentNullException(nameof(akun));
+        }
+
+        Buku? buku = Cari(isbn);
+
+        if (buku is null)
+        {
+            throw new ArgumentException(
+                "Buku tidak ditemukan.",
+                nameof(isbn));
+        }
+
+        if (akun.Denda > 0)
+        {
+            throw new InvalidOperationException(
+                "Anggota masih memiliki denda.");
+        }
+
+        if (akun.JumlahPinjamanAktif >= AkunAnggota.MaksPinjaman)
+        {
+            throw new InvalidOperationException(
+                "Jumlah pinjaman sudah mencapai batas maksimum.");
+        }
+
+        buku.Pinjam();
+        akun.CatatPinjam();
     }
 
     public void KembalikanBuku(AkunAnggota akun, string isbn)
     {
         // TODO(Level 10): implementasikan sesuai urutan pengecekan di SOAL.md.
-        throw new NotImplementedException("Level 10 belum diimplementasikan");
+
+        if (akun is null)
+        {
+            throw new ArgumentNullException(nameof(akun));
+        }
+
+        Buku? buku = Cari(isbn);
+
+        if (buku is null)
+        {
+            throw new ArgumentException(
+                "Buku tidak ditemukan.",
+                nameof(isbn));
+        }
+
+        if (akun.JumlahPinjamanAktif == 0)
+        {
+            throw new InvalidOperationException(
+                "Anggota tidak memiliki pinjaman aktif.");
+        }
+
+        buku.Kembalikan();
+        akun.CatatKembali();
     }
 }
