@@ -23,7 +23,7 @@ public class AkunAnggota
     // TODO(Level 10): setter JumlahPinjamanAktif harus private.
     public int JumlahPinjamanAktif { get; private set; }
 
-    public AkunAnggota(string nomorAnggota, string nama)
+    public AkunAnggota(string nomorAnggota)
     {
         // TODO(Level 9): nomorAnggota null/kosong/spasi -> ArgumentException.
         if (string.IsNullOrWhiteSpace(nomorAnggota))
@@ -34,7 +34,6 @@ public class AkunAnggota
         }
 
         NomorAnggota = nomorAnggota;
-        Nama = nama;
     }
 
     public void TambahDenda(int jumlah)
