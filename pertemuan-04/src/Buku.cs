@@ -7,6 +7,10 @@ namespace Pertemuan04;
 
 public class Buku
 {
+    // TODO(Level 1): field PUBLIK di bawah ini melanggar enkapsulasi (siapa pun
+    //   bisa mengubahnya sembarangan). Jadikan field PRIVATE (awali nama dengan
+    //   _) lalu ekspos lewat properti read-only: public get, tanpa setter
+    //   publik. Nama properti tetap Isbn, Judul, StokTotal, StokTersedia.
     private string _isbn = "";
     private string _judul = "";
     private int _stokTotal;
@@ -18,9 +22,9 @@ public class Buku
     public int StokTersedia => _stokTersedia;
 
     // TODO(Level 8): properti di bawah ini menerima nilai apa saja. Beri nilai
-    // awal 7 dan tambahkan logika validasi di accessor set (perlu field
-    // pendukung): nilai harus 1..30, di luar itu lempar
-    // ArgumentOutOfRangeException dan JANGAN mengubah nilai lama.
+    //   awal 7 dan tambahkan logika validasi di accessor set (perlu field
+    //   pendukung): nilai harus 1..30, di luar itu lempar
+    //   ArgumentOutOfRangeException dan JANGAN mengubah nilai lama.
     public int BatasHariPinjam { get; set; }
 
     // TODO(Level 2): validasi di AWAL konstruktor -- judul null/kosong/spasi
@@ -32,6 +36,18 @@ public class Buku
     //   kalau tidak, lempar ArgumentException. Isbn menyimpan versi TANPA '-'.
     public Buku(string isbn, string judul, int stokTotal)
     {
+        if (string.IsNullOrWhiteSpace(judul))
+        {
+            throw new ArgumentException("Judul tidak boleh kosong.");
+        }
+
+        if (stokTotal < 0)
+        {
+            throw new ArgumentException("Stok total tidak boleh negatif.");
+        }
+
+        // TODO(Level 1): isi Isbn, Judul, StokTotal dari parameter; StokTersedia
+        //   awal = stokTotal.
         _isbn = isbn;
         _judul = judul;
         _stokTotal = stokTotal;
