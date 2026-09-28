@@ -12,7 +12,7 @@ public class Perpustakaan
     // properti tersebut).
     private readonly List<Buku> _daftarBuku = new();
 
-    public IReadOnlyList<Buku> DaftarBuku => _daftarBuku;
+    public IReadOnlyList<Buku> DaftarBuku => _daftarBuku.AsReadOnly();
 
     public int JumlahJudul => _daftarBuku.Count;
 
