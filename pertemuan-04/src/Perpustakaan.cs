@@ -41,13 +41,20 @@ public class Perpustakaan
         return _daftarBuku.FirstOrDefault(x => x.Isbn == isbn);
     }
 
-    public void PinjamBuku(AkunAnggota akun, string isbn)
+    public void PinjamBuku(string isbn, AkunAnggota akun)
     {
         // TODO(Level 10): implementasikan sesuai urutan pengecekan di SOAL.md.
 
         if (akun is null)
         {
             throw new ArgumentNullException(nameof(akun));
+        }
+
+        if (string.IsNullOrWhiteSpace(isbn))
+        {
+            throw new ArgumentException(
+                "ISBN tidak boleh kosong.",
+                nameof(isbn));
         }
 
         Buku? buku = Cari(isbn);
@@ -75,13 +82,20 @@ public class Perpustakaan
         akun.CatatPinjam();
     }
 
-    public void KembalikanBuku(AkunAnggota akun, string isbn)
+    public void KembalikanBuku(string isbn, AkunAnggota akun)
     {
         // TODO(Level 10): implementasikan sesuai urutan pengecekan di SOAL.md.
 
         if (akun is null)
         {
             throw new ArgumentNullException(nameof(akun));
+        }
+
+        if (string.IsNullOrWhiteSpace(isbn))
+        {
+            throw new ArgumentException(
+                "ISBN tidak boleh kosong.",
+                nameof(isbn));
         }
 
         Buku? buku = Cari(isbn);
