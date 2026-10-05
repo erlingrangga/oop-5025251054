@@ -18,7 +18,7 @@ public class Anggota
     //   mengubahnya. Ubah menjadi `protected set` supaya hanya Anggota dan kelas
     //   turunannya yang boleh mengubah. Nilai awal untuk Anggota biasa = 2.
     public int BatasPinjam { get; protected set; } = 2;
-    
+
     public int JumlahPinjam { get; private set; }
 
     // TODO(Level 9): tambahkan field `private readonly LogAktivitas _log =
@@ -64,17 +64,26 @@ public class Anggota
 
     public string Info()
     {
-        // TODO(Level 2): kembalikan "<Id> - <Nama>" (contoh: "M01 - Sari").
-        throw new NotImplementedException("Level 2 belum diimplementasikan");
+        return $"{Id} - {Nama}";
     }
 
     // TODO(Level 9): setiap peminjaman yang berhasil juga dicatat ke log:
     //   `_log.Catat($"Pinjam: {judul}")`.
     public void Pinjam(string judul)
     {
-        // TODO(Level 5): judul null/kosong -> ArgumentException; JumlahPinjam
-        //   sudah mencapai BatasPinjam -> InvalidOperationException; selain itu
-        //   naikkan JumlahPinjam satu.
-        throw new NotImplementedException("Level 5 belum diimplementasikan");
+        if (string.IsNullOrWhiteSpace(judul))
+        {
+            throw new ArgumentException(
+                "Judul tidak boleh kosong.",
+                nameof(judul));
+        }
+
+        if (JumlahPinjam >= BatasPinjam)
+        {
+            throw new InvalidOperationException(
+                "Jumlah pinjaman sudah mencapai batas.");
+        }
+
+        JumlahPinjam++;
     }
 }
