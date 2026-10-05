@@ -24,6 +24,7 @@ Jangan hapus baris penanda di bawah ini — jawaban kalian harus ditulis **setel
 <!-- TULIS JAWABAN KALIAN DI BAWAH BARIS INI -->
 ```mermaid
 classDiagram
+%% protected = #, public = +, private = -
 
 class Anggota {
     +string Id
