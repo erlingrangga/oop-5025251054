@@ -39,9 +39,6 @@ public class Mahasiswa : Anggota
 
     public string InfoLengkap()
     {
-        // TODO(Level 7): gabungkan Info() milik kelas induk dengan data khusus
-        //   mahasiswa, dipisah " | ": "<Info()> | NRP: <Nrp> | Prodi: <Prodi> |
-        //   Alamat: <Alamat>" (Alamat memakai ToString() milik objek Alamat).
-        throw new NotImplementedException("Level 7 belum diimplementasikan");
+        return $"{Info()} | NRP: {Nrp} | Prodi: {Prodi} | Alamat: {Alamat}";
     }
 }
