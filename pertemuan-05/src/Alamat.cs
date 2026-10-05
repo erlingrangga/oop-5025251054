@@ -13,15 +13,26 @@ public class Alamat
 
     public Alamat(string jalan, string kota)
     {
-        // TODO(Level 1): jalan atau kota null/kosong/spasi -> ArgumentException;
-        //   selain itu isi Jalan dan Kota.
-        throw new NotImplementedException("Level 1 belum diimplementasikan");
+        if (string.IsNullOrWhiteSpace(jalan))
+        {
+            throw new ArgumentException(
+                "Jalan tidak boleh kosong.",
+                nameof(jalan));
+        }
+
+        if (string.IsNullOrWhiteSpace(kota))
+        {
+            throw new ArgumentException(
+                "Kota tidak boleh kosong.",
+                nameof(kota));
+        }
+
+        Jalan = jalan;
+        Kota = kota;
     }
 
     public override string ToString()
     {
-        // TODO(Level 1): kembalikan "<Jalan>, <Kota>" (contoh: "Jl. Mawar 5,
-        //   Surabaya").
-        throw new NotImplementedException("Level 1 belum diimplementasikan");
+        return $"{Jalan}, {Kota}";
     }
 }
