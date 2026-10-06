@@ -13,15 +13,26 @@ public class Dvd : Item
     public Dvd(string judul, int durasiMenit) : base(judul)
     {
         if (durasiMenit <= 0)
-            throw new ArgumentOutOfRangeException(nameof(durasiMenit), "Durasi harus positif.");
+            throw new ArgumentOutOfRangeException(
+                nameof(durasiMenit),
+                "Durasi harus lebih dari 0.");
+
         DurasiMenit = durasiMenit;
     }
 
-    // TODO(Level 3): override HitungDenda(int): Rp5.000 per hari terlambat,
-    //   TETAPI dibatasi maksimum Rp50.000 (hariTerlambat <= 0 -> 0).
+    // TODO(Level 3): tulis override HitungDenda(int) untuk Dvd:
+    //   Rp5.000 per hari terlambat, maksimum Rp50.000.
+    //   hariTerlambat <= 0 -> 0.
+    public override int HitungDenda(int hariTerlambat)
+    {
+        if (hariTerlambat <= 0)
+            return 0;
 
-    // TODO(Level 4): override MasaPinjamHari -> 2.
+        return Math.Min(hariTerlambat * 5000, 50000);
+    }
 
-    // TODO(Level 5): override Deskripsi() -> "<base.Deskripsi()> (<DurasiMenit>
-    //   menit)", mis. "[Laskar Pelangi] (125 menit)".
+    // TODO(Level 4): override properti MasaPinjamHari -> 2.
+
+    // TODO(Level 5): override Deskripsi() -> "<base.Deskripsi()> (<DurasiMenit> menit)",
+    //   mis. "[Laskar Pelangi] (125 menit)".
 }
