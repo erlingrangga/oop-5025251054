@@ -13,14 +13,24 @@ public class Majalah : Item
     public Majalah(string judul, int edisi) : base(judul)
     {
         if (edisi <= 0)
-            throw new ArgumentOutOfRangeException(nameof(edisi), "Edisi harus positif.");
+            throw new ArgumentOutOfRangeException(
+                nameof(edisi),
+                "Edisi harus lebih dari 0.");
+
         Edisi = edisi;
     }
 
-    // TODO(Level 3): override HitungDenda(int): Rp500 per hari terlambat
-    //   (hariTerlambat <= 0 -> 0).
+    // TODO(Level 3): tulis override HitungDenda(int) untuk Majalah:
+    //   Rp500 per hari terlambat (hariTerlambat <= 0 -> 0).
+    public override int HitungDenda(int hariTerlambat)
+    {
+        if (hariTerlambat <= 0)
+            return 0;
 
-    // TODO(Level 4): override MasaPinjamHari -> 3.
+        return hariTerlambat * 500;
+    }
+
+    // TODO(Level 4): override properti MasaPinjamHari -> 3.
 
     // TODO(Level 5): override Deskripsi() -> "<base.Deskripsi()> edisi <Edisi>",
     //   mis. "[Tempo] edisi 12".
