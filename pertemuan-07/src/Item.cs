@@ -1,5 +1,5 @@
 
- // File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
+// File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
 // Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
 // disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
 // memintanya secara eksplisit.
@@ -10,7 +10,7 @@ namespace Pertemuan07;
 //   "item umum" yang bisa dibuat langsung.
 // TODO(Level 9): buat Item mengimplementasikan IComparable<Item> (urut
 //   berdasarkan Judul).
-public abstract class Item
+public abstract class Item : IComparable<Item>
 {
     public string Judul { get; }
 
@@ -62,6 +62,12 @@ public abstract class Item
         // TODO(Level 9): null dianggap lebih kecil (kembalikan 1); selain itu
         //   bandingkan Judul dengan string.Compare(...,
         //   StringComparison.OrdinalIgnoreCase).
-        throw new NotImplementedException("Level 9 belum diimplementasikan");
+        if (other == null)
+            return 1;
+
+        return string.Compare(
+            Judul,
+            other.Judul,
+            StringComparison.OrdinalIgnoreCase);
     }
 }
