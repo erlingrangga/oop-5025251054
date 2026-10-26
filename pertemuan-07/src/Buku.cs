@@ -1,5 +1,5 @@
 
-public class Buku : Item, IDapatDipinjam, IDapatDiperpanjang
+public class Buku : Item, IDapatDipinjam, IDapatDiperpanjang, IDapatDicetak
 {
     private readonly StatusPinjam _status = new();
 
@@ -47,4 +47,8 @@ public class Buku : Item, IDapatDipinjam, IDapatDiperpanjang
     }
 
     // TODO Level 8: Implementasikan Cetak secara eksplisit.
+    string IDapatDicetak.Cetak()
+    {
+        return $"Buku: {Judul} oleh {Penulis}";
+    }
 }
