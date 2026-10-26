@@ -24,7 +24,7 @@ public class Buku : Item
     }
 
     // TODO(Level 1): tulis `public override int HitungDenda(int hariTerlambat)`
-    //   -- Rp2.000 per hari terlambat (hariTerlambat <= 0 -> 0).
+    //   -- Rp2.000 per hari (hariTerlambat <= 0 -> 0).
     public override int HitungDenda(int hariTerlambat)
     {
         if (hariTerlambat <= 0)
