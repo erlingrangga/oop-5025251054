@@ -1,4 +1,5 @@
-// File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
+
+ // File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
 // Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
 // disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
 // memintanya secara eksplisit.
@@ -9,7 +10,7 @@ namespace Pertemuan07;
 // TODO(Level 7): buat NotifikasiEmail mengimplementasikan INotifikasi.
 //   Kirim(pesan): pesan null/kosong/spasi -> ArgumentException; selain itu
 //   tambahkan "EMAIL: <pesan>" ke daftar Terkirim.
-public class NotifikasiEmail
+public class NotifikasiEmail : INotifikasi
 {
     private readonly List<string> _terkirim = new();
 
@@ -18,13 +19,20 @@ public class NotifikasiEmail
 
     // TODO(Level 7): tulis method Kirim(string pesan) sesuai petunjuk di atas
     //   kelas.
+    public void Kirim(string pesan)
+    {
+        if (string.IsNullOrWhiteSpace(pesan))
+            throw new ArgumentException("Pesan tidak boleh kosong.", nameof(pesan));
+
+        _terkirim.Add($"EMAIL: {pesan}");
+    }
 }
 
 // TODO(Level 7): buat NotifikasiSms mengimplementasikan INotifikasi.
 //   Kirim(pesan): pesan null/kosong/spasi -> ArgumentException; SMS dibatasi 40
 //   karakter -- pesan yang lebih panjang DIPOTONG menjadi 40 karakter pertama;
 //   tambahkan "SMS: <pesan>" ke daftar Terkirim.
-public class NotifikasiSms
+public class NotifikasiSms : INotifikasi
 {
     private readonly List<string> _terkirim = new();
 
@@ -33,4 +41,14 @@ public class NotifikasiSms
 
     // TODO(Level 7): tulis method Kirim(string pesan) sesuai petunjuk di atas
     //   kelas.
+    public void Kirim(string pesan)
+    {
+        if (string.IsNullOrWhiteSpace(pesan))
+            throw new ArgumentException("Pesan tidak boleh kosong.", nameof(pesan));
+
+        if (pesan.Length > 40)
+            pesan = pesan[..40];
+
+        _terkirim.Add($"SMS: {pesan}");
+    }
 }
