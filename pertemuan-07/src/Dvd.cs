@@ -37,5 +37,8 @@ public class Dvd : Item, IDapatDipinjam
     }
 
     // TODO Level 10: Tambahkan properti Catatan.
-    public string Catatan { get; set; } = string.Empty;
+    protected override string Catatan()
+    {
+        return "Periksa kondisi disk";
+    }
 }
