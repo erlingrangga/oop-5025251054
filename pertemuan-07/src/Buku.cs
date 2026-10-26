@@ -1,7 +1,8 @@
-// File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
-// Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
-// disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
-// memintanya secara eksplisit.
+
+ // File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
+ // Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
+ // disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
+ // memintanya secara eksplisit.
 
 namespace Pertemuan07;
 
@@ -24,6 +25,13 @@ public class Buku : Item
 
     // TODO(Level 1): tulis `public override int HitungDenda(int hariTerlambat)`
     //   -- Rp2.000 per hari terlambat (hariTerlambat <= 0 -> 0).
+    public override int HitungDenda(int hariTerlambat)
+    {
+        if (hariTerlambat <= 0)
+            return 0;
+
+        return hariTerlambat * 2000;
+    }
 
     // TODO(Level 2): tulis `public override int MasaPinjamHari` -> 14.
 
