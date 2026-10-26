@@ -1,3 +1,4 @@
+
 // File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
 // Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
 // disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
@@ -24,8 +25,16 @@ public class Majalah : Item
 
     // TODO(Level 2): tulis `public override int HitungDenda(int hariTerlambat)`
     //   -- Rp500 per hari (hariTerlambat <= 0 -> 0).
+    public override int HitungDenda(int hariTerlambat)
+    {
+        if (hariTerlambat <= 0)
+            return 0;
+
+        return hariTerlambat * 500;
+    }
 
     // TODO(Level 2): tulis `public override int MasaPinjamHari` -> 3.
+    public override int MasaPinjamHari => 3;
 
     // TODO(Level 3): implementasi IDapatDipinjam (lihat petunjuk di Buku).
 
