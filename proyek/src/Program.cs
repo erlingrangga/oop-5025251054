@@ -1,8 +1,8 @@
 using Proyek;
 
 // Titik masuk aplikasi. Ganti isi berkas ini dengan demo (menu atau skenario berurutan)
- // yang memperlihatkan semua aturan khas domain kalian, termasuk skenario gagal yang
- // ditangani exception. Kelas-kelas domain ditulis di berkas terpisah.
+// yang memperlihatkan semua aturan khas domain kalian, termasuk skenario gagal yang
+// ditangani exception. Kelas-kelas domain ditulis di berkas terpisah.
 Console.WriteLine("Proyek ETS PBO - tulis demo di sini.");
 
 PencatatKlinik? pencatat = null;
@@ -95,6 +95,18 @@ try
     catch (ArgumentException ex)
     {
         Console.WriteLine($"Data ditolak: {ex.Message}");
+    }
+
+    Console.WriteLine("\n=== UJI VALIDASI OBAT ===");
+
+    try
+    {
+        resep.TambahObat("Paracetamol", 15000m);
+    }
+    catch (ObatTidakValidException ex)
+    {
+        Console.WriteLine($"Obat ditolak: {ex.Message}");
+        pencatat.Catat($"Validasi obat ditangani: {ex.Message}");
     }
 
     pencatat.Catat("Demo Klinik Mini selesai.");
