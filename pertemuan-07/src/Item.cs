@@ -1,11 +1,16 @@
 
+ // File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
+ // Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
+ // disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
+ // memintanya secara eksplisit.
+
 namespace Pertemuan07;
 
-// Level 1: Item dijadikan abstract class karena tidak ada "item umum"
-// yang bisa dibuat langsung.
-// Level 9: Item mengimplementasikan IComparable<Item> untuk mengurutkan
-// item berdasarkan Judul.
-public abstract class Item : IComparable<Item>
+// TODO(Level 1): jadikan kelas ini `abstract` -- Item hanya konsep, tidak ada
+//   "item umum" yang bisa dibuat langsung.
+// TODO(Level 9): buat Item mengimplementasikan IComparable<Item> (urut
+//   berdasarkan Judul).
+public abstract class Item
 {
     public string Judul { get; }
 
@@ -17,17 +22,23 @@ public abstract class Item : IComparable<Item>
         Judul = judul;
     }
 
-    // Level 1: setiap jenis item wajib menentukan dendanya sendiri.
+    // TODO(Level 1): jadikan `abstract` (tanpa badan, titik koma saja) -- setiap
+    //   jenis item wajib menentukan dendanya sendiri. Di kelas turunan tulis
+    //   `public override int HitungDenda(int hariTerlambat)`.
     public abstract int HitungDenda(int hariTerlambat);
 
-    // Level 2: setiap jenis item menentukan masa pinjamnya sendiri.
-    public abstract int MasaPinjamHari { get; }
+    // TODO(Level 2): jadikan `abstract` (properti tanpa badan: `public abstract
+    //   int MasaPinjamHari { get; }`); override di Buku (14), Majalah (3), Dvd
+    //   (2).
+    public virtual int MasaPinjamHari => throw new NotImplementedException("Level 2 belum diimplementasikan");
 
     // Method KONKRET di kelas abstrak: logika bersama yang memakai anggota abstrak.
     public DateOnly HitungTanggalKembali(DateOnly tanggalPinjam)
     {
-        // Level 2: tanggal kembali dihitung berdasarkan masa pinjam item.
-        return tanggalPinjam.AddDays(MasaPinjamHari);
+        // TODO(Level 2): kembalikan tanggalPinjam ditambah MasaPinjamHari hari.
+        //   (Item tidak perlu tahu jenis konkretnya -- MasaPinjamHari yang
+        //   menentukan.)
+        throw new NotImplementedException("Level 2 belum diimplementasikan");
     }
 
     // Hook: kelas turunan BOLEH menimpa, tapi tidak wajib. SUDAH LENGKAP.
@@ -37,32 +48,20 @@ public abstract class Item : IComparable<Item>
     // bagian yang bervariasi diserahkan ke HitungDenda() dan Catatan().
     public string BuatStruk(int hariTerlambat)
     {
-        // Level 10: hari terlambat negatif dianggap 0.
-        if (hariTerlambat < 0)
-            hariTerlambat = 0;
-
-        string struk = $"STRUK PENGEMBALIAN\nJudul: {Judul}\nTerlambat: {hariTerlambat} hari\nDenda: Rp{HitungDenda(hariTerlambat)}";
-
-        string catatan = Catatan();
-
-        // Tambahkan catatan jika kelas turunan memilikinya.
-        if (!string.IsNullOrEmpty(catatan))
-            struk += $"\nCatatan: {catatan}";
-
-        return struk;
+        // TODO(Level 10): hariTerlambat < 0 dianggap 0. Kembalikan teks bergaris
+        //   baru "\n" (tanpa "\n" di akhir): baris 1 "STRUK PENGEMBALIAN", baris
+        //   2 "Judul: <Judul>", baris 3 "Terlambat: <hari> hari", baris 4
+        //   "Denda: Rp<HitungDenda(hari)>" (angka polos tanpa pemisah ribuan).
+        //   Kalau Catatan() TIDAK kosong, tambahkan baris 5 "Catatan:
+        //   <Catatan()>".
+        throw new NotImplementedException("Level 10 belum diimplementasikan");
     }
 
     public int CompareTo(Item? other)
     {
-        // Level 9: null dianggap lebih kecil daripada item ini.
-        if (other is null)
-            return 1;
-
-        // Judul dibandingkan tanpa membedakan huruf besar dan kecil.
-        return string.Compare(
-            Judul,
-            other.Judul,
-            StringComparison.OrdinalIgnoreCase
-        );
+        // TODO(Level 9): null dianggap lebih kecil (kembalikan 1); selain itu
+        //   bandingkan Judul dengan string.Compare(...,
+        //   StringComparison.OrdinalIgnoreCase).
+        throw new NotImplementedException("Level 9 belum diimplementasikan");
     }
 }
