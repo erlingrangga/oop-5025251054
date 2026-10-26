@@ -1,8 +1,8 @@
 
  // File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
- // Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
- // disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
- // memintanya secara eksplisit.
+// Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
+// disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
+// memintanya secara eksplisit.
 
 namespace Pertemuan07;
 
@@ -30,7 +30,7 @@ public abstract class Item
     // TODO(Level 2): jadikan `abstract` (properti tanpa badan: `public abstract
     //   int MasaPinjamHari { get; }`); override di Buku (14), Majalah (3), Dvd
     //   (2).
-    public virtual int MasaPinjamHari => throw new NotImplementedException("Level 2 belum diimplementasikan");
+    public abstract int MasaPinjamHari { get; }
 
     // Method KONKRET di kelas abstrak: logika bersama yang memakai anggota abstrak.
     public DateOnly HitungTanggalKembali(DateOnly tanggalPinjam)
@@ -38,7 +38,7 @@ public abstract class Item
         // TODO(Level 2): kembalikan tanggalPinjam ditambah MasaPinjamHari hari.
         //   (Item tidak perlu tahu jenis konkretnya -- MasaPinjamHari yang
         //   menentukan.)
-        throw new NotImplementedException("Level 2 belum diimplementasikan");
+        return tanggalPinjam.AddDays(MasaPinjamHari);
     }
 
     // Hook: kelas turunan BOLEH menimpa, tapi tidak wajib. SUDAH LENGKAP.
