@@ -27,12 +27,12 @@ Program akan menampilkan data tenaga medis, kunjungan pasien, resep obat, dan to
 ```mermaid
 classDiagram
     class Pasien {
-        -string _nomorRekamMedis
-        -string _nama
-        -int _umur
-        +Pasien(nomorRekamMedis, nama, umur)
-        +ToString() string
-    }
+    -string _nomorRekamMedis
+    -int _umur
+    +string Nama
+    +Pasien(nomorRekamMedis, nama, umur)
+    +ToString() string
+}
 
     class TenagaMedis {
         <<abstract>>
