@@ -1,3 +1,4 @@
+
 // File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
 // Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
 // disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
@@ -20,8 +21,16 @@ public class Dvd : Item
 
     // TODO(Level 2): tulis `public override int HitungDenda(int hariTerlambat)`
     //   -- Rp5.000 per hari, MAKSIMUM Rp50.000 (hariTerlambat <= 0 -> 0).
+    public override int HitungDenda(int hariTerlambat)
+    {
+        if (hariTerlambat <= 0)
+            return 0;
+
+        return Math.Min(hariTerlambat * 5000, 50000);
+    }
 
     // TODO(Level 2): tulis `public override int MasaPinjamHari` -> 2.
+    public override int MasaPinjamHari => 2;
 
     // TODO(Level 3): implementasi IDapatDipinjam (lihat petunjuk di Buku).
 
