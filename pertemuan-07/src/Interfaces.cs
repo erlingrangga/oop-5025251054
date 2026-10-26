@@ -1,3 +1,4 @@
+
 // File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
 // Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
 // disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
@@ -38,6 +39,6 @@ public interface IDapatDicetak
     {
         // TODO(Level 8): kembalikan "=== <Cetak()> ===" -- mis. "=== Buku: Bumi
         //   Manusia oleh Pramoedya ===".
-        throw new NotImplementedException("Level 8 belum diimplementasikan");
+        return $"=== {Cetak()} ===";
     }
 }
