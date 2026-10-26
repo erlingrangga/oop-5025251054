@@ -5,11 +5,10 @@ using Proyek;
 // ditangani exception. Kelas-kelas domain ditulis di berkas terpisah.
 Console.WriteLine("Proyek ETS PBO - tulis demo di sini.");
 
-PencatatKlinik? pencatat = null;
-
 try
 {
-    pencatat = new PencatatKlinik();
+    using PencatatKlinik pencatat = new PencatatKlinik();
+
     pencatat.Catat("Sistem Klinik Mini dimulai.");
 
     Pasien pasien = new Pasien("RM001", "Budi", 20);
@@ -117,6 +116,5 @@ catch (Exception ex)
 }
 finally
 {
-    pencatat?.Dispose();
     Console.WriteLine("\nSistem Klinik Mini selesai.");
 }
