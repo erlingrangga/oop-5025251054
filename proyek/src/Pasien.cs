@@ -1,13 +1,13 @@
+
 namespace Proyek;
 
 public class Pasien
 {
     private string _nomorRekamMedis;
-    private string _nama;
     private int _umur;
 
     public string NomorRekamMedis => _nomorRekamMedis;
-    public string Nama => _nama;
+    public string Nama { get; private set; }
     public int Umur => _umur;
 
     public Pasien(string nomorRekamMedis, string nama, int umur)
@@ -22,7 +22,7 @@ public class Pasien
             throw new ArgumentException("Umur pasien harus antara 0 sampai 120.");
 
         _nomorRekamMedis = nomorRekamMedis;
-        _nama = nama;
+        Nama = nama;
         _umur = umur;
     }
 
