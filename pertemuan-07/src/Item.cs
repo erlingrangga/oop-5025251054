@@ -46,6 +46,7 @@ public abstract class Item : IComparable<Item>
 
     // Template Method: urutan langkahnya dikunci di sini (BUKAN virtual),
     // bagian yang bervariasi diserahkan ke HitungDenda() dan Catatan().
+   
     public string BuatStruk(int hariTerlambat)
     {
         // TODO(Level 10): hariTerlambat < 0 dianggap 0. Kembalikan teks bergaris
@@ -54,7 +55,24 @@ public abstract class Item : IComparable<Item>
         //   "Denda: Rp<HitungDenda(hari)>" (angka polos tanpa pemisah ribuan).
         //   Kalau Catatan() TIDAK kosong, tambahkan baris 5 "Catatan:
         //   <Catatan()>".
-        throw new NotImplementedException("Level 10 belum diimplementasikan");
+        int hari = Math.Max(0, hariTerlambat);
+
+        List<string> baris = new()
+    {
+        "STRUK PENGEMBALIAN",
+        $"Judul: {Judul}",
+        $"Terlambat: {hari} hari",
+        $"Denda: Rp{HitungDenda(hari)}"
+    };
+
+    string catatan = Catatan();
+
+    if (!string.IsNullOrEmpty(catatan))
+    {
+        baris.Add($"Catatan: {catatan}");
+    }
+
+    return string.Join("\n", baris);
     }
 
     public int CompareTo(Item? other)
