@@ -26,13 +26,16 @@ public class Resep : IBisaDitagih
     public void TambahObat(string namaObat, decimal harga)
     {
         if (string.IsNullOrWhiteSpace(namaObat))
-            throw new ArgumentException("Nama obat tidak boleh kosong.");
+            throw new ObatTidakValidException(
+                "Nama obat tidak boleh kosong.");
 
         if (harga <= 0)
-            throw new ArgumentException("Harga obat harus lebih dari nol.");
+            throw new ObatTidakValidException(
+                "Harga obat harus lebih dari nol.");
 
         if (_daftarObat.ContainsKey(namaObat))
-            throw new ArgumentException("Obat tersebut sudah terdaftar.");
+            throw new ObatTidakValidException(
+                "Obat tersebut sudah terdaftar.");
 
         _daftarObat.Add(namaObat, harga);
     }
