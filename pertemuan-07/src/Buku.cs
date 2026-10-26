@@ -1,8 +1,8 @@
 
- // File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
- // Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
- // disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
- // memintanya secara eksplisit.
+// File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
+// Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
+// disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
+// memintanya secara eksplisit.
 
 namespace Pertemuan07;
 
@@ -34,6 +34,7 @@ public class Buku : Item
     }
 
     // TODO(Level 2): tulis `public override int MasaPinjamHari` -> 14.
+    public override int MasaPinjamHari => 14;
 
     // TODO(Level 3): implementasi IDapatDipinjam. Saran: simpan `private
     //   readonly StatusPinjam _status = new();` lalu Tersedia =
