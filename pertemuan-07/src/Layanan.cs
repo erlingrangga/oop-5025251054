@@ -1,7 +1,3 @@
-// File ini berisi TODO -- lihat SOAL.md untuk kontrak lengkap tiap level.
-// Bagian bertanda TODO(Level N) adalah tugas kalian; kode lain sudah
-// disediakan. Jangan mengubah nama/tipe yang sudah ada kecuali TODO
-// memintanya secara eksplisit.
 
 namespace Pertemuan07;
 
@@ -10,24 +6,46 @@ public static class Katalog
 {
     public static int PinjamSemua(IEnumerable<IDapatDipinjam> daftar)
     {
-        // TODO(Level 5): null -> ArgumentNullException. Panggil Pinjam() pada
-        //   tiap elemen; kalau sebuah elemen melempar InvalidOperationException
-        //   (sedang dipinjam), lewati tanpa menghentikan yang lain. Kembalikan
-        //   JUMLAH yang berhasil dipinjam.
-        throw new NotImplementedException("Level 5 belum diimplementasikan");
+        if (daftar == null)
+            throw new ArgumentNullException(nameof(daftar));
+
+        int jumlahBerhasil = 0;
+
+        foreach (IDapatDipinjam item in daftar)
+        {
+            try
+            {
+                item.Pinjam();
+                jumlahBerhasil++;
+            }
+            catch (InvalidOperationException)
+            {
+                // Item sedang dipinjam, jadi lewati.
+            }
+        }
+
+        return jumlahBerhasil;
     }
 
     public static List<IDapatDipinjam> HanyaBisaDipinjam(IEnumerable<Item> daftar)
     {
-        // TODO(Level 5): null -> ArgumentNullException. Dari campuran Item,
-        //   ambil hanya yang mengimplementasikan IDapatDipinjam (urutan asli
-        //   dipertahankan). BukuReferensi tidak ikut.
-        throw new NotImplementedException("Level 5 belum diimplementasikan");
+        if (daftar == null)
+            throw new ArgumentNullException(nameof(daftar));
+
+        List<IDapatDipinjam> hasil = new();
+
+        foreach (Item item in daftar)
+        {
+            if (item is IDapatDipinjam dapatDipinjam)
+                hasil.Add(dapatDipinjam);
+        }
+
+        return hasil;
     }
 }
 
 // Dependency Injection: LayananPeminjaman TIDAK membuat pemberitahuannya
-// sendiri -- ia menerimanya dari luar lewat konstruktor, sebagai interface.
+// sendiri -- ia menerimanya dari luar lewat konstruktor.
 public class LayananPeminjaman
 {
     private readonly INotifikasi _notifikasi;
